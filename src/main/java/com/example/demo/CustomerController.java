@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,5 +41,11 @@ public class CustomerController {
         String updatedName = body.get("name");
         customerService.updateCustomer(updatedName, id);
         return getAllCustomers(); 
+    }
+
+    @DeleteMapping("/{id}")
+    public List<Customer> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
+        return getAllCustomers();
     }
 }
