@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CustomerService {
     private List<Customer> list;
 
