@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Customer {
     private long id;
     private String name;
