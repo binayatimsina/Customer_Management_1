@@ -1,11 +1,16 @@
 package com.example.demo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Customer {
+    @Id
     private long id;
     private String name;
+
+    public Customer() {
+    }
 
     public Customer(long id, String name) {
         this.id = id;
