@@ -49,6 +49,7 @@ public class CustomerController {
 
     @PostMapping("/purchase/{id}")
     public void purchase(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        System.out.println("INSIDE PURCHASE");
         double purchaseAmount = body.get("totalAmount");
         customerService.purchase(purchaseAmount, id);
     }

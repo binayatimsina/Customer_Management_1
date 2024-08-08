@@ -49,7 +49,10 @@ public class CustomerService {
     public void purchase(double purchaseAmount, long id) {
         Customer customer = customerRepository.findById(id).get();
         if (customer != null) {
+            System.out.println("PURCHASE HERE");
+            System.out.println(customer.getTotalSales());
             customer.setTotalSales(customer.getTotalSales() + purchaseAmount);
+            System.out.println(customer.getTotalSales());
             customerRepository.save(customer);
         }
     }
