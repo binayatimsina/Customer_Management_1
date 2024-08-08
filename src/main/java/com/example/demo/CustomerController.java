@@ -47,9 +47,9 @@ public class CustomerController {
         customerService.deleteCustomer(id);
     }
 
-    @PostMapping("/{id}/purchase")
+    @PostMapping("/purchase/{id}")
     public void purchase(@RequestBody Map<String, Double> body, @PathVariable Long id) {
-        double purchaseAmount = body.get("amount");
+        double purchaseAmount = body.get("totalAmount");
         customerService.purchase(purchaseAmount, id);
     }
 
