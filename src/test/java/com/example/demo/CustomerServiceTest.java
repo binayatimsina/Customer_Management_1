@@ -2,6 +2,7 @@ package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -55,14 +56,10 @@ public class CustomerServiceTest {
 
     @Test
     public void testAddCustomer() {
-        Customer c4 = new Customer(4, "Binaya Timsina");
+        Customer c4 = new Customer(4, "Ben John");
         customerList.add(c4);
-        System.out.println(customerList.size());
-        when(customerService.addCustomer("Binaya Timsina")).thenReturn(c4);
-        Customer customer = customerService.addCustomer("Binaya Timsina");
-        assertNotNull(customer);
-        System.out.println(customerList.size());
-        assertEquals(customer, c4);
-        System.out.println(customerList.size());
+        when(customerRepository.save(any(Customer.class))).thenReturn(c4);
+        assertNotNull(customerService.addCustomer("Ben John"));
+        assertEquals(customerService.addCustomer("Ben John"), c4);
     }
 }

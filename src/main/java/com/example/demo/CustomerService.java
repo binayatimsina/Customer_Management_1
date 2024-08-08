@@ -44,8 +44,8 @@ public class CustomerService {
         // this.list.add(newCustomer);
         Customer customer = new Customer(customerRepository.count()+1, name);
 
-        customerRepository.save(customer);
-        return customer;
+        return customerRepository.save(customer);
+        // return customer;
     }
 
     public void updateCustomer(String newName, long id) {
