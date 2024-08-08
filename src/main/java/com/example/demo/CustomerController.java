@@ -46,4 +46,22 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
     }
+
+    @PostMapping("/{id}/purchase")
+    public void purchase(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        double purchaseAmount = body.get("amount");
+        customerService.purchase(purchaseAmount, id);
+    }
+
+    @PostMapping("/{id}/purchaseWithCredit")
+    public void purchaseWithCredit(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        double purchaseAmount = body.get("amount");
+        customerService.purchaseWithCredit(purchaseAmount, id);
+    }
+
+    @PostMapping("/{id}/payment")
+    public void makePayment(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        double payment = body.get("payment");
+        customerService.makePayment(payment, id);
+    }
 }
