@@ -38,12 +38,14 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public void addCustomer(String name) {
+    public Customer addCustomer(String name) {
         // long id = this.list.size() + 1;
         // Customer newCustomer = new Customer(id, name);
         // this.list.add(newCustomer);
-        customerRepository.save(new Customer(customerRepository.count()+1, name));
+        Customer customer = new Customer(customerRepository.count()+1, name);
 
+        customerRepository.save(customer);
+        return customer;
     }
 
     public void updateCustomer(String newName, long id) {
