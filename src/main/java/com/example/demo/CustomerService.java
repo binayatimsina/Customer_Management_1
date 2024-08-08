@@ -51,6 +51,7 @@ public class CustomerService {
         if (customer != null) {
             System.out.println("PURCHASE HERE");
             System.out.println(customer.getTotalSales());
+            System.out.println(purchaseAmount);
             customer.setTotalSales(customer.getTotalSales() + purchaseAmount);
             System.out.println(customer.getTotalSales());
             customerRepository.save(customer);

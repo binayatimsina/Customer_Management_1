@@ -1,6 +1,6 @@
 CREATE TABLE customer (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    total_sales DECIMAL(10,2) DEFAULT 0.0,
-    balance_due DECIMAL(10,2) DEFAULT 0.0
+    total_sales DECIMAL(10,2) NOT NULL DEFAULT 0.0,
+    balance_due DECIMAL(10,2) NOT NULL DEFAULT 0.0
 );
