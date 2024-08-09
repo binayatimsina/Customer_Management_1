@@ -32,17 +32,24 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public void updateCustomer(String newName, long id) {
+    public Customer updateCustomer(String newName, long id) {
         Customer customer = customerRepository.findById(id).get();
         if (customer != null) {
             customer.setName(newName);
-            customerRepository.save(customer);
+            return customerRepository.save(customer);
         }
+        return null;
 
     }
 
-    public void deleteCustomer(long id) {
+    public boolean deleteCustomer(long id) {
         customerRepository.deleteById(id);
+        System.out.println(customerRepository.findById(id));
+        if (customerRepository.findById(id) == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Transactional

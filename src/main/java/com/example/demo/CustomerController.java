@@ -30,21 +30,21 @@ public class CustomerController {
     }
 
     @PostMapping("")
-    public void createCustomer(@RequestBody Map<String, String> body) {
+    public Customer createCustomer(@RequestBody Map<String, String> body) {
         System.out.println(body);
         String name = body.get("name");
-        customerService.addCustomer(name); 
+        return customerService.addCustomer(name); 
     }
 
     @PutMapping("/{id}")
-    public void updateCustomerList(@RequestBody Map<String, String> body, @PathVariable Long id) {
+    public Customer updateCustomerList(@RequestBody Map<String, String> body, @PathVariable Long id) {
         String updatedName = body.get("name");
-        customerService.updateCustomer(updatedName, id);
+        return customerService.updateCustomer(updatedName, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
+    public boolean deleteCustomer(@PathVariable Long id) {
+        return customerService.deleteCustomer(id);
     }
 
     @PostMapping("/purchase/{id}")

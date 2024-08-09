@@ -3,6 +3,8 @@ package com.example.demo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -42,24 +44,41 @@ public class CustomerServiceTest {
     @Test
     public void testGetAllCustomers() {
         when(customerRepository.findAll()).thenReturn(customerList);
-        System.out.println("hi");
-        assertNotNull(customerRepository.findAll());
-        assertEquals(customerRepository.findAll(), customerList);
+        // System.out.println("hi");
+        assertNotNull(customerService.getAllCustomers());
+        assertEquals(customerService.getAllCustomers(), customerList);
     }
 
     @Test
     public void testGetCustomerByID() {
         when(customerRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(customerList.get(0)));
-        assertNotNull(customerRepository.findById(1L));
-        assertEquals(customerRepository.findById(1L).get(), customerList.get(0));
+        assertNotNull(customerService.getCustomerByID(1));
+        assertEquals(customerService.getCustomerByID(1).get(), customerList.get(0));
     }
 
     @Test
-    public void testAddCustomer() {
+    public void testCreateCustomer() {
         Customer c4 = new Customer(4, "Ben John");
         customerList.add(c4);
         when(customerRepository.save(any(Customer.class))).thenReturn(c4);
         assertNotNull(customerService.addCustomer("Ben John"));
         assertEquals(customerService.addCustomer("Ben John"), c4);
     }
+
+    @Test
+    public void testUpdateCustomer() {
+        Customer c5 = new Customer(4, "Binaya");
+        customerList.add(c5);
+        when(customerRepository.findById(4L)).thenReturn(java.util.Optional.ofNullable(customerList.get(3)));
+        when(customerRepository.save(any(Customer.class))).thenReturn(c5);
+        assertEquals(customerService.updateCustomer("Binaya", 4), c5);
+    }
+
+    @Test
+    public void testDeleteCustomer() {
+        when(customerRepository.findById(any())).thenReturn(null);
+        assertEquals(customerService.deleteCustomer(1L), true);
+    }
+
+
 }
