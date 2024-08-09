@@ -13,6 +13,7 @@ import jakarta.transaction.Transactional;
 @Service
 public class CustomerService {
     private List<Customer> list;
+    private int number = 3;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -27,12 +28,14 @@ public class CustomerService {
     }
 
     public Customer addCustomer(String name) {
-        Customer customer = new Customer(customerRepository.count()+1, name);
+        // Customer customer = new Customer(customerRepository.count() ++, name);
+        Customer customer = new Customer(++number, name);
 
         return customerRepository.save(customer);
     }
 
     public Customer updateCustomer(String newName, long id) {
+        System.out.println("I am inside here!");
         Customer customer = customerRepository.findById(id).get();
         if (customer != null) {
             customer.setName(newName);
