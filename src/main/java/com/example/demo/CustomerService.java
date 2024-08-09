@@ -44,7 +44,6 @@ public class CustomerService {
 
     public boolean deleteCustomer(long id) {
         customerRepository.deleteById(id);
-        System.out.println(customerRepository.findById(id));
         if (customerRepository.findById(id) == null) {
             return true;
         } else {
@@ -53,16 +52,13 @@ public class CustomerService {
     }
 
     @Transactional
-    public void purchase(double purchaseAmount, long id) {
+    public Customer purchase(double purchaseAmount, long id) {
         Customer customer = customerRepository.findById(id).get();
         if (customer != null) {
-            System.out.println("PURCHASE HERE");
-            System.out.println(customer.getTotalSales());
-            System.out.println(purchaseAmount);
             customer.setTotalSales(customer.getTotalSales() + purchaseAmount);
-            System.out.println(customer.getTotalSales());
-            customerRepository.save(customer);
+            return customerRepository.save(customer);
         }
+        return null;
     }
 
     @Transactional

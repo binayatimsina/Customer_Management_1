@@ -86,4 +86,5 @@ public class CustomerControllerTest {
         when(customerService.deleteCustomer(anyLong())).thenReturn(true);
         assertEquals(true, customerController.deleteCustomer(1L));
     }
+
 }

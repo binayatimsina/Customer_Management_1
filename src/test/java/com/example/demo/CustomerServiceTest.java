@@ -44,7 +44,6 @@ public class CustomerServiceTest {
     @Test
     public void testGetAllCustomers() {
         when(customerRepository.findAll()).thenReturn(customerList);
-        // System.out.println("hi");
         assertNotNull(customerService.getAllCustomers());
         assertEquals(customerService.getAllCustomers(), customerList);
     }
@@ -80,5 +79,22 @@ public class CustomerServiceTest {
         assertEquals(customerService.deleteCustomer(1L), true);
     }
 
+    @Test
+    public void testPurchase() {
+        Customer c6 = new Customer(6, "Binaya");
+        customerList.add(c6);
+        when(customerRepository.findById(6L)).thenReturn(java.util.Optional.ofNullable(customerList.get(3)));
+        customerService.purchase(100.0, 6);
+        assertEquals(customerList.get(3).getTotalSales(), 100.0);
+    }
+
+    @Test
+    public void testPurchaseWithCredit() {
+        Customer c7 = new Customer(7, "Binaya");
+        customerList.add(c7);
+        when(customerRepository.findById(7L)).thenReturn(java.util.Optional.ofNullable(customerList.get(3)));
+        customerService.purchaseWithCredit(100.0, 7);
+        assertEquals(customerList.get(3).getBalanceDue(), 100.0);
+    }
 
 }
