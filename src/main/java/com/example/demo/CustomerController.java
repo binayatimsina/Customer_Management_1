@@ -54,15 +54,16 @@ public class CustomerController {
         customerService.purchase(purchaseAmount, id);
     }
 
-    @PostMapping("/{id}/purchaseWithCredit")
+    @PostMapping("/purchasewithcredit/{id}")
     public void purchaseWithCredit(@RequestBody Map<String, Double> body, @PathVariable Long id) {
-        double purchaseAmount = body.get("amount");
+        System.out.println("INSIDE PURCHASE WITH CREDIT");
+        double purchaseAmount = body.get("totalAmount");
         customerService.purchaseWithCredit(purchaseAmount, id);
     }
 
-    @PostMapping("/{id}/payment")
+    @PostMapping("/payment/{id}")
     public void makePayment(@RequestBody Map<String, Double> body, @PathVariable Long id) {
-        double payment = body.get("payment");
+        double payment = body.get("totalPayment");
         customerService.makePayment(payment, id);
     }
 }
