@@ -46,4 +46,24 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
     }
+
+    @PostMapping("/purchase/{id}")
+    public void purchase(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        System.out.println("INSIDE PURCHASE");
+        double purchaseAmount = body.get("totalAmount");
+        customerService.purchase(purchaseAmount, id);
+    }
+
+    @PostMapping("/purchasewithcredit/{id}")
+    public void purchaseWithCredit(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        System.out.println("INSIDE PURCHASE WITH CREDIT");
+        double purchaseAmount = body.get("totalAmount");
+        customerService.purchaseWithCredit(purchaseAmount, id);
+    }
+
+    @PostMapping("/payment/{id}")
+    public void makePayment(@RequestBody Map<String, Double> body, @PathVariable Long id) {
+        double payment = body.get("totalPayment");
+        customerService.makePayment(payment, id);
+    }
 }
